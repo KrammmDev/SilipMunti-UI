@@ -161,3 +161,16 @@
 @media (min-width: 851px) {
   .home-page site-navbar .navbar { width: min(calc(100% - 64px), 1440px); }
 }
+
+/* Keep premium typography while bringing real listings closer to the fold. */
+@media (max-width: 767px) {
+  .hero-container { padding-top: 28px; padding-bottom: 20px; }
+  .hero-content h1 { font-size: clamp(28px, 6.8vw, 34px); }
+  .hero-content p { margin-top: 12px; font-size: 14px; }
+  .search-panel { margin-top: 20px; padding: 14px; gap: 10px; }
+  .search-panel .search-field label { margin-bottom: 5px; }
+  .search-panel .select-wrapper select { height: 44px; min-height: 44px; }
+  .search-panel .search-button { min-height: 46px; }
+  .hero-container .sm-ai-home-trigger { margin-top: 8px; }
+  .home-section .section-heading { margin-bottom: 16px; gap: 10px; }
+}
