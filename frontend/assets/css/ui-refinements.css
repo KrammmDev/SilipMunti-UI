@@ -273,3 +273,33 @@ site-navbar .profile-dropdown { border-radius: 10px; box-shadow: var(--sm-ui-ove
 @media (max-width: 560px) {
   .auth-shell { border-radius: 0; box-shadow: none; }
 }
+
+/* Consistent listing actions across home, search and saved properties. */
+.favorite-button {
+  width: 44px; height: 44px;
+  border: 1px solid #e1e4ef;
+  background: #ffffff;
+  color: #112bc1;
+  box-shadow: 0 2px 8px rgb(25 34 65 / 10%);
+  font-size: 18px;
+}
+.favorite-button.active { color: #112bc1; background: #f9d84a; }
+.favorite-button:hover { transform: none; }
+.silip-chat-bubble { width: 50px; height: 50px; font-size: 20px; box-shadow: 0 3px 12px rgb(17 43 193 / 18%); }
+.silip-chat-bubble:hover { transform: none; }
+
+.properties-grid .property-card, .favorites-grid .property-card {
+  border-radius: 8px;
+  box-shadow: none;
+}
+.properties-grid .property-card-content, .favorites-grid .property-card-content { padding: 16px; }
+@media (max-width: 480px) {
+  .properties-grid { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  .properties-grid .property-price { font-size: 18px; }
+  .properties-grid .property-title { font-size: 16px; }
+  .properties-grid .property-location, .properties-grid .property-information { font-size: 12px; }
+}
+@media (max-width: 767px) {
+  .silip-chat-widget { right: 12px; bottom: max(12px, env(safe-area-inset-bottom)); }
+  .silip-chat-bubble { width: 48px; height: 48px; border: 2px solid #ffffff; font-size: 18px; }
+}
