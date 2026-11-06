@@ -1,0 +1,581 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Property Details | SilipMunti</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../../assets/css/global.css?v=2" />
+    <link
+      rel="stylesheet"
+      href="/SilipMunti/frontend/assets/css/notifications.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/SilipMunti/frontend/assets/css/property-details.css?v=6"
+    />
+    <link
+      rel="stylesheet"
+      href="/SilipMunti/frontend/assets/css/map-provider.css?v=1"
+    />
+    <link
+      rel="stylesheet"
+      href="/SilipMunti/frontend/assets/css/chat-bubble.css"
+    />
+    <link rel="stylesheet" href="../../assets/css/home.css" />
+    <link
+      rel="stylesheet"
+      href="/SilipMunti/frontend/assets/css/responsive.css?v=1"
+    />
+    <link
+      rel="stylesheet"
+      href="/SilipMunti/frontend/assets/css/property-details-mobile.css?v=1"
+    />
+    <link
+      rel="stylesheet"
+      href="/SilipMunti/frontend/assets/css/system-modal.css?v=1"
+    />
+    <script src="/SilipMunti/frontend/assets/js/system-modal.js?v=1"></script>
+    <link rel="stylesheet" href="/SilipMunti/frontend/assets/css/ui-refinements.css?v=1" />
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <site-navbar active-page="properties"></site-navbar>
+
+    <main id="main-content" tabindex="-1">
+      <section class="property-status property-loading" id="property-loading">
+        <i class="fa-solid fa-spinner fa-spin"></i>
+        <p>Loading property details...</p>
+      </section>
+
+      <section
+        class="property-status property-error hidden"
+        id="property-error"
+      >
+        <i class="fa-solid fa-house-circle-xmark"></i>
+        <h1>Property unavailable</h1>
+        <p id="property-error-message">
+          The requested property could not be found.
+        </p>
+        <a class="button button-blue" href="index.html">
+          <i class="fa-solid fa-arrow-left"></i>
+          Browse properties
+        </a>
+      </section>
+
+      <article class="property-page hidden" id="property-page">
+        <div class="property-container">
+          <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <a href="../../index.html">Home</a>
+            <i class="fa-solid fa-chevron-right"></i>
+            <a href="index.html">Properties</a>
+            <i class="fa-solid fa-chevron-right"></i>
+            <span id="breadcrumb-title">Property details</span>
+          </nav>
+
+          <section class="property-heading">
+            <div>
+              <span class="verified-label">
+                <i class="fa-solid fa-circle-check"></i>
+                Verified rental property
+              </span>
+              <h1 id="property-title">Property title</h1>
+              <p class="property-address">
+                <i class="fa-solid fa-location-dot"></i>
+                <span id="property-address">Property location</span>
+              </p>
+            </div>
+
+            <div class="property-price-wrapper">
+              <p class="property-price">
+                <span id="property-price">₱0</span>
+                <small>/ month</small>
+              </p>
+              <button
+                class="favorite-button"
+                id="favorite-button"
+                type="button"
+                aria-label="Add to favorites"
+              >
+                <i class="fa-regular fa-heart"></i>
+              </button>
+            </div>
+          </section>
+
+          <div class="property-layout">
+            <div class="property-main-column">
+              <section class="property-gallery">
+                <div class="gallery-grid" id="gallery-grid"></div>
+                <!-- <button
+                  class="view-images-button"
+                  id="view-images-button"
+                  type="button"
+                >
+                  <i class="fa-regular fa-images"></i>
+                  View Images
+                </button> -->
+              </section>
+              <section class="property-facts">
+                <div class="property-fact">
+                  <span class="fact-icon"
+                    ><i class="fa-solid fa-building"></i
+                  ></span>
+                  <div>
+                    <small>Property type</small>
+                    <strong id="property-type">Not specified</strong>
+                  </div>
+                </div>
+
+                <div class="property-fact">
+                  <span class="fact-icon"><i class="fa-solid fa-bed"></i></span>
+                  <div>
+                    <small>Bedrooms</small>
+                    <strong id="property-bedrooms">Not specified</strong>
+                  </div>
+                </div>
+
+                <div class="property-fact">
+                  <span class="fact-icon"
+                    ><i class="fa-solid fa-ruler-combined"></i
+                  ></span>
+                  <div>
+                    <small>Floor area</small>
+                    <strong id="property-size">Not specified</strong>
+                  </div>
+                </div>
+
+                <div class="property-fact">
+                  <span class="fact-icon"
+                    ><i class="fa-solid fa-users"></i
+                  ></span>
+                  <div>
+                    <small>Occupancy</small>
+                    <strong id="property-occupancy">Not specified</strong>
+                  </div>
+                </div>
+
+                <div class="property-fact">
+                  <span class="fact-icon"
+                    ><i class="fa-solid fa-house-circle-check"></i
+                  ></span>
+                  <div>
+                    <small>Availability</small>
+                    <strong id="property-availability">Not specified</strong>
+                  </div>
+                </div>
+              </section>
+
+              <section class="property-content-section">
+                <div class="section-title">
+                  <span></span>
+                  <h2>Description</h2>
+                </div>
+                <p class="property-description" id="property-description">
+                  No description available.
+                </p>
+              </section>
+
+              <section class="property-content-section">
+                <div class="section-title">
+                  <span></span>
+                  <h2>Amenities</h2>
+                </div>
+                <div class="detail-chip-list" id="property-amenities"></div>
+              </section>
+
+              <section class="property-content-section">
+                <div class="section-title">
+                  <span></span>
+                  <h2>Nearby Establishments</h2>
+                </div>
+                <div class="detail-list" id="nearby-establishments"></div>
+              </section>
+
+              <section class="property-content-section">
+                <div class="section-title">
+                  <span></span>
+                  <h2>Transportation Routes</h2>
+                </div>
+                <div class="detail-list" id="transport-routes"></div>
+              </section>
+
+              <section class="property-content-section">
+                <div class="section-title">
+                  <span></span>
+                  <h2>Property Location</h2>
+                </div>
+                <div class="sm-map-shell">
+                  <div
+                    class="sm-map-canvas is-loading"
+                    id="property-map"
+                    aria-label="Property location map"
+                  ></div>
+                  <div class="sm-map-details">
+                    <div>
+                      <strong id="map-location-title">Muntinlupa City</strong>
+                      <p id="map-location-address">Property location</p>
+                    </div>
+                    <a
+                      class="button button-outline"
+                      id="open-map-button"
+                      href="#"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                      Open full map
+                    </a>
+                  </div>
+                </div>
+              </section>
+
+              <section
+                class="property-content-section property-reviews-section"
+                aria-labelledby="listing-reviews-title"
+              >
+                <div class="reviews-section-heading">
+                  <div class="section-title">
+                    <span></span>
+                    <div>
+                      <h2 id="listing-reviews-title">Renter Reviews</h2>
+                      <p>Experiences shared by renters for this property.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="listing-reviews-overview">
+                  <div class="listing-review-summary">
+                    <span>Property rating</span>
+                    <div>
+                      <strong id="listing-review-average">0.0</strong>
+                      <small>/ 5</small>
+                    </div>
+                    <p id="listing-review-total">No reviews yet</p>
+                  </div>
+
+                  <div
+                    class="listing-rating-breakdown"
+                    id="listing-rating-breakdown"
+                    aria-label="Rating distribution"
+                  ></div>
+                </div>
+
+                <div class="listing-review-filter-bar">
+                  <strong>Filter reviews</strong>
+                  <div
+                    class="listing-rating-filters"
+                    id="listing-rating-filters"
+                  >
+                    <button
+                      class="rating-filter-button active"
+                      type="button"
+                      data-rating="all"
+                      aria-pressed="true"
+                    >
+                      All <span>0</span>
+                    </button>
+                    <button
+                      class="rating-filter-button"
+                      type="button"
+                      data-rating="5"
+                      aria-pressed="false"
+                    >
+                      Rating 5 <span>0</span>
+                    </button>
+                    <button
+                      class="rating-filter-button"
+                      type="button"
+                      data-rating="4"
+                      aria-pressed="false"
+                    >
+                      Rating 4 <span>0</span>
+                    </button>
+                    <button
+                      class="rating-filter-button"
+                      type="button"
+                      data-rating="3"
+                      aria-pressed="false"
+                    >
+                      Rating 3 <span>0</span>
+                    </button>
+                    <button
+                      class="rating-filter-button"
+                      type="button"
+                      data-rating="2"
+                      aria-pressed="false"
+                    >
+                      Rating 2 <span>0</span>
+                    </button>
+                    <button
+                      class="rating-filter-button"
+                      type="button"
+                      data-rating="1"
+                      aria-pressed="false"
+                    >
+                      Rating 1 <span>0</span>
+                    </button>
+                  </div>
+                </div>
+
+                <div
+                  class="listing-reviews-status"
+                  id="listing-reviews-status"
+                  role="status"
+                >
+                  <i class="fa-solid fa-spinner fa-spin"></i>
+                  <span>Loading renter reviews...</span>
+                </div>
+
+                <div
+                  class="listing-reviews-list hidden"
+                  id="listing-reviews-list"
+                ></div>
+
+                <div
+                  class="listing-reviews-actions hidden"
+                  id="listing-reviews-actions"
+                >
+                  <p id="listing-reviews-visible-count"></p>
+                  <button
+                    class="listing-reviews-toggle"
+                    id="toggle-listing-reviews"
+                    type="button"
+                    aria-controls="listing-reviews-list"
+                    aria-expanded="false"
+                  >
+                    <span>See all reviews</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                  </button>
+                </div>
+              </section>
+            </div>
+
+            <aside class="property-sidebar">
+              <section class="landlord-card">
+                <span class="card-label">Listed by</span>
+                <div class="landlord-information">
+                  <div class="landlord-avatar">
+                    <i class="fa-solid fa-user"></i>
+                  </div>
+                  <div>
+                    <h2 id="landlord-name">Landlord</h2>
+                    <p id="landlord-verification-badge">
+                      <i class="fa-solid fa-circle-check"></i> Verified landlord
+                    </p>
+                  </div>
+                </div>
+              </section>
+
+              <section class="inquiry-card">
+                <span class="card-label">Get in touch</span>
+                <h2>Property Inquiry</h2>
+                <p>
+                  Ask about availability, viewing schedules, and rental terms.
+                </p>
+                <button
+                  class="button button-blue inquiry-button"
+                  id="open-inquiry-button"
+                  type="button"
+                >
+                  <i class="fa-regular fa-paper-plane"></i>
+                  Send Inquiry
+                </button>
+              </section>
+
+              <section class="listing-review-card">
+                <span class="card-label">Share your experience</span>
+                <h2>Review this Property</h2>
+                <p>
+                  Help other renters by sharing your experience with this rental
+                  property.
+                </p>
+                <button
+                  class="button button-outline listing-review-button"
+                  id="write-review-button"
+                  type="button"
+                >
+                  <i class="fa-solid fa-pen-to-square"></i>
+                  Write a Review
+                </button>
+              </section>
+
+              <section class="safety-card">
+                <div class="safety-icon">
+                  <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <div>
+                  <h2>Rent safely</h2>
+                  <p>
+                    Inspect the property and verify all details before giving
+                    any payment.
+                  </p>
+                </div>
+              </section>
+            </aside>
+          </div>
+        </div>
+      </article>
+    </main>
+    <footer class="site-footer" id="about">
+      <div class="footer-container">
+        <div>
+          <img
+            class="footer-logo"
+            src="/SilipMunti/frontend/assets/images/SilipMuntiWhite.png"
+            alt="SilipMunti"
+          />
+          <p>
+            Muntinlupa's trusted marketplace for verified rental properties.
+            Find your next home with confidence and ease.
+          </p>
+          <div class="social-links">
+            <a href="#" aria-label="Facebook"
+              ><i class="fa-brands fa-facebook"></i
+            ></a>
+            <a href="#" aria-label="Instagram"
+              ><i class="fa-brands fa-instagram"></i
+            ></a>
+            <a href="#" aria-label="TikTok"
+              ><i class="fa-brands fa-tiktok"></i
+            ></a>
+            <a href="#" aria-label="X"
+              ><i class="fa-brands fa-x-twitter"></i
+            ></a>
+          </div>
+        </div>
+        <div>
+          <h3>Quick Links</h3>
+          <a href="/SilipMunti/frontend/index.html">Home</a>
+          <a href="/SilipMunti/frontend/index.html#about">About</a>
+          <a href="/SilipMunti/frontend/pages/properties/index.html"
+            >Properties</a
+          >
+          <a href="/SilipMunti/frontend/index.html#landlords">Landlords</a>
+        </div>
+        <div>
+          <h3>Support</h3>
+          <a href="/SilipMunti/frontend/pages/legal/privacy-policy.html"
+            >Privacy Policy</a
+          >
+          <a href="/SilipMunti/frontend/pages/legal/terms-of-service.html"
+            >Terms of Service</a
+          >
+        </div>
+        <div>
+          <h3>Contact Us</h3>
+          <p><i class="fa-solid fa-phone"></i> 09945443908</p>
+          <p><i class="fa-solid fa-envelope"></i> silipmunti@gmail.com</p>
+        </div>
+      </div>
+      <p class="copyright">© 2026 SilipMunti. All rights reserved.</p>
+    </footer>
+
+    <div
+      class="image-lightbox hidden"
+      id="image-lightbox"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Property image viewer"
+    >
+      <div class="lightbox-counter" id="lightbox-counter">1 / 1</div>
+      <button
+        class="lightbox-close"
+        id="close-lightbox"
+        type="button"
+        aria-label="Close"
+      >
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <button
+        class="lightbox-navigation lightbox-previous"
+        id="lightbox-previous"
+        type="button"
+        aria-label="Previous image"
+      >
+        <i class="fa-solid fa-chevron-left"></i>
+      </button>
+      <div class="lightbox-image-wrapper">
+        <img
+          id="lightbox-image"
+          src="../../assets/images/property-placeholder.svg"
+          alt="Property image"
+        />
+      </div>
+      <button
+        class="lightbox-navigation lightbox-next"
+        id="lightbox-next"
+        type="button"
+        aria-label="Next image"
+      >
+        <i class="fa-solid fa-chevron-right"></i>
+      </button>
+    </div>
+
+    <div class="modal-overlay hidden" id="inquiry-modal">
+      <section
+        class="inquiry-modal-card"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="inquiry-modal-title"
+      >
+        <button
+          class="modal-close-button"
+          id="close-inquiry-button"
+          type="button"
+          aria-label="Close inquiry form"
+        >
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="modal-icon"><i class="fa-regular fa-message"></i></div>
+        <h2 id="inquiry-modal-title">Send an Inquiry</h2>
+        <p>
+          Your message will start a conversation with the property landlord.
+        </p>
+        <form id="inquiry-form">
+          <label for="inquiry-message">Message</label>
+          <textarea
+            id="inquiry-message"
+            name="message_text"
+            rows="6"
+            maxlength="2000"
+            placeholder="Hello, I am interested in this property. Is it still available?"
+            required
+          ></textarea>
+          <span class="field-error" data-error-for="message_text"></span>
+          <div
+            class="form-message hidden"
+            id="inquiry-form-message"
+            role="alert"
+          ></div>
+          <button
+            class="button button-blue"
+            id="send-inquiry-button"
+            type="submit"
+          >
+            <span>Send Inquiry</span>
+            <i class="fa-regular fa-paper-plane"></i>
+          </button>
+        </form>
+      </section>
+    </div>
+    <silip-back-to-top></silip-back-to-top>
+    <script src="/SilipMunti/frontend/assets/js/back-to-top.js?v=1"></script>
+    <script src="/SilipMunti/frontend/assets/js/session.js?v=4"></script>
+    <script src="/SilipMunti/frontend/assets/js/site-navbar.js?v=3"></script>
+    <script src="/SilipMunti/frontend/assets/js/notifications.js?v=2"></script>
+    <script src="/SilipMunti/frontend/assets/js/map-config.js?v=1"></script>
+    <script src="/SilipMunti/frontend/assets/js/map-provider.js?v=1"></script>
+    <script src="/SilipMunti/frontend/assets/js/property-details.js?v=9"></script>
+    <script src="/SilipMunti/frontend/assets/js/chat-bubble.js?v=2"></script>
+  </body>
+</html>
