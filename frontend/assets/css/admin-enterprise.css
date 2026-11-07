@@ -312,3 +312,20 @@
 .admin-enterprise .admin-chart-data caption { text-align: left; padding: 8px; font-weight: 600; }
 .admin-enterprise .admin-trend-note { font-size: 12px; color: var(--admin-muted); margin-top: 12px; }
 @media (max-width: 720px) { .admin-enterprise .admin-timeline-body { padding: 16px; } }
+
+/* Reports: clear analytics hierarchy and exact values below the charts. */
+.admin-enterprise .report-trend-health-section { grid-template-columns: repeat(2, minmax(0,1fr)); }
+.admin-enterprise .report-health-panel { grid-column: 1 / -1; }
+.admin-enterprise .report-health-panel .listing-health-layout { grid-template-columns: 150px minmax(0,1fr); }
+.admin-enterprise .report-health-panel .report-stat-list { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 12px 24px; }
+.admin-enterprise .report-comparison-chart { padding: 20px 0; }
+.admin-enterprise .report-comparison-plot { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 16px; padding: 8px 12px; }
+.admin-enterprise .report-comparison-column { display: flex; flex-direction: column; align-items: center; gap: 10px; min-width: 0; font-size: 12px; text-align: center; }
+.admin-enterprise .report-comparison-column strong { font-size: 18px; font-weight: 600; }
+.admin-enterprise .report-comparison-track { height: 190px; width: 100%; display: flex; justify-content: center; align-items: end; border-bottom: 1px solid var(--admin-border); background: repeating-linear-gradient(to top, transparent 0, transparent 46px, #edf0f6 47px, transparent 48px); }
+.admin-enterprise .report-comparison-track > span { display: block; width: min(48px,70%); border-radius: 3px 3px 0 0; }
+.admin-enterprise .report-comparison-chart > .report-note { margin-top: 18px; color: var(--admin-muted); }
+.admin-enterprise .report-activity-detail-section tbody th { background: #fff; color: #273245; font-weight: 500; font-size: 12px; }
+@media(max-width:1200px) { .admin-enterprise .report-trend-health-section { grid-template-columns: minmax(0,1fr); } }
+@media(max-width:720px) { .admin-enterprise .report-health-panel .listing-health-layout { grid-template-columns: minmax(0,1fr); } .admin-enterprise .report-health-panel .report-stat-list { grid-template-columns: minmax(0,1fr); } .admin-enterprise .report-comparison-plot { gap: 10px; padding-inline: 0; } .admin-enterprise .report-comparison-column { font-size: 11px; } }
+.admin-enterprise .report-health-panel .listing-health-layout { min-height: 0; padding-block: 20px; }
