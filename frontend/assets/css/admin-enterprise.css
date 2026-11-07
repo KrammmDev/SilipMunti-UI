@@ -276,3 +276,19 @@
   .admin-enterprise .admin-table.compact tbody td { padding: 7px 0; }
   .admin-enterprise .admin-table.compact tbody td::before { color: #596273; font-size: 10px; font-weight: 500; text-transform: none; }
 }
+
+/* Dashboard status visualizations use the already loaded records. */
+.admin-enterprise .admin-chart-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin-bottom: 24px; }
+.admin-enterprise .admin-chart-body { display: flex; align-items: center; gap: 28px; min-height: 230px; padding: 24px; }
+.admin-enterprise .admin-status-donut { width: 154px; height: 154px; flex: 0 0 154px; border-radius: 50%; background: var(--status-segments); display: grid; place-items: center; }
+.admin-enterprise .admin-status-donut > div { width: 118px; height: 118px; border-radius: 50%; background: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.admin-enterprise .admin-status-donut strong { font-size: 28px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.admin-enterprise .admin-status-donut span { color: var(--admin-muted); font-size: 11px; }
+.admin-enterprise .admin-chart-legend { list-style: none; margin: 0; padding: 0; flex: 1; min-width: 0; }
+.admin-enterprise .admin-chart-legend li { display: grid; grid-template-columns: 8px minmax(0,1fr) auto auto; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--admin-border); font-size: 12px; }
+.admin-enterprise .admin-chart-legend li:last-child { border: 0; }
+.admin-enterprise .admin-chart-dot { width: 8px; height: 8px; border-radius: 2px; }
+.admin-enterprise .admin-chart-legend small { color: var(--admin-muted); font-size: 11px; min-width: 32px; text-align: right; }
+.admin-enterprise .admin-chart-state { color: var(--admin-muted); font-size: 13px; margin: auto; text-align: center; }
+@media (max-width: 1200px) { .admin-enterprise .admin-chart-grid { grid-template-columns: minmax(0,1fr); } }
+@media (max-width: 480px) { .admin-enterprise .admin-chart-body { flex-direction: column; gap: 16px; padding: 22px 16px; } .admin-enterprise .admin-chart-legend { width: 100%; } }

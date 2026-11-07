@@ -229,6 +229,44 @@
     `;
   }
 
+  // Present the existing responses without additional requests or data mutations.
+  function renderStatusChart(selector, records, field, categories) {
+    const container = document.querySelector(selector);
+    if (!container) return;
+    if (!records.length) {
+      container.innerHTML = '<p class="admin-chart-state">No records available yet.</p>';
+      return;
+    }
+    const counts = categories.map((category) => ({ ...category, count: 0 }));
+    const other = { key: "other", label: "Other / unspecified", color: "#8993a5", count: 0 };
+    records.forEach((record) => {
+      const key = String(record[field] || "").trim().toLowerCase();
+      const category = counts.find((item) => item.key === key) || other;
+      category.count += 1;
+    });
+    if (other.count) counts.push(other);
+    let position = 0;
+    const segments = counts.map((item) => {
+      const start = position;
+      position += item.count / records.length * 100;
+      return `${item.color} ${start}% ${position}%`;
+    }).join(", ");
+    const summary = counts.map((item) => `${item.label}: ${item.count}`).join("; ");
+    container.innerHTML = `
+      <div class="admin-status-donut" role="img" aria-label="${escapeHtml(summary)}" style="--status-segments: conic-gradient(${segments})">
+        <div><strong>${records.length.toLocaleString("en-PH")}</strong><span>Total records</span></div>
+      </div>
+      <ul class="admin-chart-legend">${counts.map((item) => `
+        <li><span class="admin-chart-dot" style="background:${item.color}" aria-hidden="true"></span>
+          <span>${escapeHtml(item.label)}</span><strong>${item.count.toLocaleString("en-PH")}</strong>
+          <small>${Math.round(item.count / records.length * 100)}%</small></li>`).join("")}</ul>`;
+  }
+
+  function renderChartError(selector) {
+    const container = document.querySelector(selector);
+    if (container) container.innerHTML = '<p class="admin-chart-state">Unable to load chart. Please refresh the page.</p>';
+  }
+
   async function loadDocuments() {
     const result = await fetchJson(endpoints.documents);
     const documents = extractArray(result, ["documents"]);
@@ -249,6 +287,11 @@
     window.SilipMuntiAdminShell?.setPendingCount(pending);
 
     renderRecentDocuments(documents);
+    renderStatusChart("#document-status-chart", documents, "verification_status", [
+      { key: "pending", label: "Pending review", color: "#f7d447" },
+      { key: "approved", label: "Approved", color: "#1734c7" },
+      { key: "rejected", label: "Rejected", color: "#d94a63" },
+    ]);
 
     return { documents, pending, approved, rejected };
   }
@@ -257,6 +300,10 @@
     const result = await fetchJson(endpoints.listings);
     const listings = extractArray(result, ["listings"]);
     setText("#total-listings", listings.length);
+    renderStatusChart("#listing-status-chart", listings, "availability_status", [
+      { key: "available", label: "Available", color: "#1734c7" },
+      { key: "occupied", label: "Occupied", color: "#f7d447" },
+    ]);
   }
 
   async function loadUsers() {
@@ -302,9 +349,11 @@
       setText("#total-documents", "0");
       setText("#pending-documents", "0");
       renderDocumentsError(documentsResult.reason?.message);
+      renderChartError("#document-status-chart");
     }
 
     if (listingsResult.status === "rejected") {
+      renderChartError("#listing-status-chart");
       setText("#total-listings", "0");
     }
 
