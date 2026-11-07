@@ -22,7 +22,7 @@
     />
     <script src="/SilipMunti/frontend/assets/js/system-modal.js?v=1"></script>
     <link rel="stylesheet" href="/SilipMunti/frontend/assets/css/ui-refinements.css?v=3" />
-    <link rel="stylesheet" href="/SilipMunti/frontend/assets/css/admin-enterprise.css?v=2" media="screen" />
+    <link rel="stylesheet" href="/SilipMunti/frontend/assets/css/admin-enterprise.css?v=3" media="screen" />
   </head>
 
   <body class="admin-enterprise">
@@ -193,6 +193,17 @@
             </div>
           </section>
 
+          <section class="admin-chart-grid admin-trend-grid" aria-label="Monthly platform analytics">
+            <article class="admin-panel">
+              <div class="admin-panel-header"><div><h2>Listing activity</h2><p>New property listings · last 12 calendar months</p></div></div>
+              <div id="listing-activity-chart" class="admin-timeline-body" aria-live="polite"><p class="admin-chart-state">Loading listing activity…</p></div>
+            </article>
+            <article class="admin-panel">
+              <div class="admin-panel-header"><div><h2>Verification submissions</h2><p>Documents submitted · last 12 calendar months</p></div></div>
+              <div id="verification-activity-chart" class="admin-timeline-body" aria-live="polite"><p class="admin-chart-state">Loading submission activity…</p></div>
+            </article>
+          </section>
+
           <section class="admin-chart-grid" aria-label="Platform status overview">
             <article class="admin-panel">
               <div class="admin-panel-header"><div><h2>Listing availability</h2><p>Current availability of property listings.</p></div></div>
@@ -342,6 +353,6 @@
 
     <script src="/SilipMunti/frontend/assets/js/session.js?v=4"></script>
     <script src="/SilipMunti/frontend/assets/js/admin-sidebar.js?v=5"></script>
-    <script src="/SilipMunti/frontend/assets/js/admin-dashboard.js?v=4"></script>
+    <script src="/SilipMunti/frontend/assets/js/admin-dashboard.js?v=5"></script>
   </body>
 </html>

@@ -15,3 +15,7 @@ Fixtures are only used by local verification scripts, not application files. The
 ## Dashboard charts update
 
 The subsequent charts update adds two accessible donut charts to Dashboard: listing availability and document verification status. This update additionally changes `frontend/assets/js/admin-dashboard.js` solely to render charts from the responses already fetched by Dashboard. No new API calls or backend changes. Unknown statuses are shown as Other / unspecified; empty and failed data sources have explicit messages. Counts refer to all records returned by each existing endpoint, with no added filtering. Copy the updated dashboard HTML, admin-dashboard.js and admin-enterprise.css for this charts update. The original design-only statement above describes the preceding commit.
+
+## Monthly analytics layout
+
+Added a listing activity bar chart and document submission area chart above the status charts, matching the requested analytics layout. Both group existing endpoint records by `created_at` for the last 12 calendar months, including the current month, according to the browser's date. These are counts of returned records, not historical snapshots or revenue. Invalid/missing dates are excluded with a visible note; older records are outside the displayed period. Accessible expandable tables provide exact monthly figures. No new dependencies, API calls or backend changes. Tested at six viewport widths with fixtures, including monthly totals, invalid dates, out-of-period records, empty responses and API failures.

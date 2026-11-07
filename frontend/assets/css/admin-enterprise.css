@@ -292,3 +292,23 @@
 .admin-enterprise .admin-chart-state { color: var(--admin-muted); font-size: 13px; margin: auto; text-align: center; }
 @media (max-width: 1200px) { .admin-enterprise .admin-chart-grid { grid-template-columns: minmax(0,1fr); } }
 @media (max-width: 480px) { .admin-enterprise .admin-chart-body { flex-direction: column; gap: 16px; padding: 22px 16px; } .admin-enterprise .admin-chart-legend { width: 100%; } }
+
+/* Monthly analytics: responsive SVG plots and keyboard-accessible data tables. */
+.admin-enterprise .admin-timeline-body { padding: 22px; min-height: 360px; }
+.admin-enterprise .admin-trend-summary { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 16px; }
+.admin-enterprise .admin-trend-summary span { display: block; color: var(--admin-muted); font-size: 12px; }
+.admin-enterprise .admin-trend-summary strong { display: block; font-size: 25px; font-weight: 600; margin-top: 4px; font-variant-numeric: tabular-nums; }
+.admin-enterprise .admin-timeline-scroll { max-width: 100%; overflow-x: auto; }
+.admin-enterprise .admin-timeline-scroll svg { display: block; width: 100%; min-width: 480px; }
+.admin-enterprise .admin-timeline-scroll text { fill: #596273; font-size: 11px; }
+.admin-enterprise .admin-chart-gridline { stroke: #e8ecf3; stroke-width: 1; }
+.admin-enterprise .admin-trend-caption { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-top: 12px; color: var(--admin-muted); font-size: 11px; }
+.admin-enterprise .admin-trend-caption i { display: inline-block; width: 8px; height: 8px; background: #1734c7; border-radius: 2px; margin-right: 7px; }
+.admin-enterprise .admin-chart-data { margin-top: 18px; border-top: 1px solid var(--admin-border); }
+.admin-enterprise .admin-chart-data summary { padding: 12px 0; min-height: 44px; color: #1734c7; font-size: 12px; cursor: pointer; }
+.admin-enterprise .admin-chart-data table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.admin-enterprise .admin-chart-data th, .admin-enterprise .admin-chart-data td { padding: 8px; border-bottom: 1px solid var(--admin-border); text-align: left; font-weight: 400; }
+.admin-enterprise .admin-chart-data thead th { font-weight: 600; }
+.admin-enterprise .admin-chart-data caption { text-align: left; padding: 8px; font-weight: 600; }
+.admin-enterprise .admin-trend-note { font-size: 12px; color: var(--admin-muted); margin-top: 12px; }
+@media (max-width: 720px) { .admin-enterprise .admin-timeline-body { padding: 16px; } }
