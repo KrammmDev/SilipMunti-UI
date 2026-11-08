@@ -22,10 +22,10 @@
     />
     <script src="/SilipMunti/frontend/assets/js/system-modal.js?v=1"></script>
     <link rel="stylesheet" href="/SilipMunti/frontend/assets/css/ui-refinements.css?v=3" />
-    <link rel="stylesheet" href="/SilipMunti/frontend/assets/css/admin-enterprise.css?v=1" media="screen" />
+    <link rel="stylesheet" href="/SilipMunti/frontend/assets/css/admin-enterprise.css?v=5" media="screen" />
   </head>
 
-  <body class="admin-enterprise">
+  <body class="admin-enterprise admin-users-page">
     <a class="skip-link" href="#main-content">Skip to main content</a>
     <div class="admin-layout">
       <admin-sidebar active-page="users"></admin-sidebar>
@@ -41,15 +41,7 @@
             >
               <i class="fa-solid fa-bars"></i>
             </button>
-            <div class="admin-search">
-              <i class="fa-solid fa-magnifying-glass"></i>
-              <input
-                type="search"
-                id="topbar-search"
-                placeholder="Search name or email"
-                autocomplete="off"
-              />
-            </div>
+            <span class="admin-topbar-context">Accounts <span aria-hidden="true">/</span> <strong>Users</strong></span>
           </div>
 
           <div class="admin-topbar-profile">
@@ -121,6 +113,13 @@
             </div>
 
             <div class="admin-filters users-filters">
+              <label class="admin-user-search-filter" for="topbar-search">
+                <span>Search users</span>
+                <div class="admin-search">
+                  <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                  <input type="search" id="topbar-search" placeholder="Search name or email" autocomplete="off" />
+                </div>
+              </label>
               <label>
                 <span>Role</span>
                 <select id="role-filter">

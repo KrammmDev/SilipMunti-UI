@@ -329,3 +329,16 @@
 @media(max-width:1200px) { .admin-enterprise .report-trend-health-section { grid-template-columns: minmax(0,1fr); } }
 @media(max-width:720px) { .admin-enterprise .report-health-panel .listing-health-layout { grid-template-columns: minmax(0,1fr); } .admin-enterprise .report-health-panel .report-stat-list { grid-template-columns: minmax(0,1fr); } .admin-enterprise .report-comparison-plot { gap: 10px; padding-inline: 0; } .admin-enterprise .report-comparison-column { font-size: 11px; } }
 .admin-enterprise .report-health-panel .listing-health-layout { min-height: 0; padding-block: 20px; }
+
+/* Keep a single focus indicator around compound search controls. */
+.admin-enterprise .admin-search input:focus-visible { outline: none !important; box-shadow: none !important; }
+.admin-enterprise .admin-search:focus-within { border-color: #1734c7; box-shadow: 0 0 0 3px rgb(23 52 199 / 10%); }
+.admin-enterprise .admin-topbar-context { display: flex; align-items: center; gap: 12px; font-size: 13px; color: #596273; }
+.admin-enterprise .admin-topbar-context > span { color: #a7afbd; }
+.admin-enterprise .admin-topbar-context strong { color: #273245; font-weight: 500; }
+.admin-users-page .users-filters { grid-template-columns: minmax(240px,1.5fr) repeat(3,minmax(0,1fr)); align-items: end; }
+.admin-users-page .admin-user-search-filter { display: flex; flex-direction: column; gap: 8px; }
+.admin-users-page .admin-user-search-filter .admin-search { width: 100%; min-height: 44px; background: #fff; }
+.admin-users-page .admin-user-search-filter .admin-search input { width: 100%; }
+@media (max-width:1200px) { .admin-users-page .users-filters { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+@media (max-width:720px) { .admin-users-page .users-filters { grid-template-columns: minmax(0,1fr); } .admin-users-page .admin-user-search-filter .admin-search i { display: block; } }
